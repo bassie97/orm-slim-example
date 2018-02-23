@@ -26,4 +26,4 @@ Run this command in the application directory to run the test suite
 
 That's it! Now go build something cool.
 
-run with: php -S 0.0.0.0:8080 -t public public/index.php
+run with: `php -S 0.0.0.0:8080 -t public public/index.php`
