@@ -27,3 +27,13 @@ Run this command in the application directory to run the test suite
 That's it! Now go build something cool.
 
 run with: `php -S 0.0.0.0:8080 -t public public/index.php`
+
+To start using Doctrine install all necessary packages with composer
+
+Create a mysql database and configure the connection in: bootstrap.php
+
+once you've created the database run: `php vendor/doctrine/orm/bin/doctrine orm:schema-tool:create -f`
+to create te necessary tables and relations
+
+If you have changed the entities run: `php vendor/doctrine/orm/bin/doctrine orm:schema-tool:update -f
+`
