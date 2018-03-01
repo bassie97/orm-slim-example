@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/orm-slim-example2.iml" filepath="$PROJECT_DIR$/.idea/orm-slim-example2.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../orm-slim-example2/.idea/orm-slim-example2.iml" filepath="$PROJECT_DIR$/../orm-slim-exmaple2/.idea/orm-slim-example2.iml" />
     </modules>
   </component>
 </project>

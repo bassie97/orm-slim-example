@@ -1,4 +1,7 @@
 <?php
+namespace App\Entities;
+
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,25 +24,33 @@ class Cart
     protected $id;
 
     /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
      * One Cart has One Customer.
      * @ORM\OneToOne(targetEntity="Customer", inversedBy="cart")
      * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
      */
-    private $customer;
+    protected $customer;
 
     /**
      * One cart has many cart_items
-     * @ORM\OneToMany(targetEntity="CartItem", mappedBy="Cart", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="CartItem", mappedBy="cart", cascade={"persist", "remove"})
      */
     private $cart_items;
 
     public function __construct()
     {
-        $this->cart_items = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->cart_items = new ArrayCollection();
     }
 
     public function getCartItems(){
-        return $this->cart_items->toArray();
+        return $this->cart_items;
     }
 
     public function addCartItem(CartItem $cartItem) {
@@ -56,21 +67,15 @@ class Cart
         }
     }
 
-    public function getMyCartItems()
+    /**
+     * @return mixed
+     */
+    public function getCustomer()
     {
-        return array_map(
-            function ($cartItem) {
-                return $cartItem->getProduct();
-            },
-            $this->cart_items->toArray()
-        );
+        return $this->customer;
     }
 
-    public function getCustomer(Customer $customer) {
-        return $this->$customer;
-    }
-
-    public function setCustomer($customer){
+    public function setCustomer(Customer $customer){
         $this->customer = $customer;
         return $this;
     }

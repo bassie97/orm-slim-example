@@ -1,4 +1,6 @@
 <?php
+namespace App\Entities;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,7 +33,7 @@ class CartItem
     protected $cart;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Product", inversedBy="cart_items")
+     * @ORM\ManyToOne(targetEntity="Product")
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=FALSE)
      */
     protected $product;

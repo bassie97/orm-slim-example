@@ -1,11 +1,23 @@
 <?php
+use Doctrine\ORM\Tools\Setup;
+require 'vendor/autoload.php';
 
-use Doctrine\ORM\Tools\Console\ConsoleRunner;
+$path = array('src/app/Entities');
+$devMode = true;
 
-// replace with file to your own project bootstrap
-require_once 'bootstrap.php';
+$config = Setup::createAnnotationMetadataConfiguration($path, $devMode, null, null, false);
 
-// replace with mechanism to retrieve EntityManager in your app
-$entityManager = GetEntityManager();
+$connectionOptions = array(
+    'driver' => 'pdo_mysql',
+    'host' => 'localhost',
+    'dbname'   => 'orm_db',
+    'user'     => 'root',
+    'password' => '',
+);
 
-return ConsoleRunner::createHelperSet($entityManager);
+$em = \Doctrine\ORM\EntityManager::create($connectionOptions, $config);
+
+$helpers = new Symfony\Component\Console\Helper\HelperSet(array(
+    'db' => new \Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper($em->getConnection()),
+    'em' => new \Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper($em)
+));
