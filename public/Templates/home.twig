@@ -1,1 +1,8 @@
-<h1>{{ id }}</h1>
+{% extends "index.twig" %}
+{% block body %}
+    {{ test }}
+    <form action='../shop' method='POST'>
+        <input name='fullname' id='fullname' type='text' placeholder='Fullname'>
+        <button type='submit'>Login</button>
+    </form>
+{% endblock %}

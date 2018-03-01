@@ -16,11 +16,28 @@ class HomeController
         public function __construct(Twig $view) {
         $this->view = $view;
     }
+
     public function home($request, $response, $args) {
-        // your code here
-        // use $this->view to render the HTML
+        $response = $this->view->render($response, 'home.twig', $args);
+        return $response;
+    }
+
+    public function login($request, $response, $args) {
+        $args['name'] = $_POST['fullname'];
+        $_SESSION = $_POST['fullname'];
+        if ($args['name'] == 'admin')
+            $response = $this->view->render($response, 'admin.twig', $args);
+        else
+            $response = $this->view->render($response, 'shop.twig', $args);
+
+        return $response;
+    }
+
+    public function logout($request, $response, $args) {
+        $_POST = null;
 
         $response = $this->view->render($response, 'home.twig', $args);
+
         return $response;
     }
 }

@@ -37,7 +37,13 @@ $customerResource = new CustomerResource();
 //    echo $customerResource->get(null);
 //
 
-$app->get('/{id}', App\Controllers\HomeController::class . ':home');
+$app->get('/', App\Controllers\HomeController::class . ':home');
+
+$app->post('/shop', App\Controllers\HomeController::class . ':login');
+
+$app->get('/home', App\Controllers\HomeController::class . ':logout');
+
+$app->get('/logout', App\Controllers\HomeController::class . ':logout');
 
 //$app->get('/customer', App\Controllers\CustomerController::class . ':index');
 //
