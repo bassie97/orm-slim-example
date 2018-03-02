@@ -73,4 +73,20 @@ class ProductController extends AbstractResource
         return $response;
     }
 
+    public function create($request, $response, $args){
+
+        var_dump($request->getParsedBody());
+
+
+//        return $response->withRedirect('/admin');
+    }
+
+    public function update($request, $response, $args){
+
+    }
+
+    public function delete($request, $response, $args){
+
+    }
+
 }
