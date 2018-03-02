@@ -78,25 +78,42 @@ class ProductController extends AbstractResource
 
         $allPostPutVars = $request->getParsedBody();
 
-        $product = new Product();
-        $product->setName($allPostPutVars['name']);
-        $product->setPrice($allPostPutVars['price']);
-        $product->setDescription($allPostPutVars['description']);
-
-        $this->getEntityManager()->persist($product);
-        $this->getEntityManager()->flush();
+        //TODO maak een nieuw product entity aan en voeg de post variabelen toe aan het object
+        
 
 
         return $response->withRedirect('/admin');
     }
 
-    public function update($request, $response, $args){
+    public function edit($request, $response, $args) {
+        $id = $args['id'];
+        $product = $this->getEntityManager()->getRepository('App\Entities\Product')->find($id);
 
+        $args['product'] = $product;
 
+        $response = $this->view->render($response, 'update.twig', $args);
+        return $response;
 
     }
 
+    public function update($request, $response, $args){
+
+        $allPostPutVars = $request->getParsedBody();
+
+        //TODO gebruik de post variabelen om het object te updaten
+
+
+        return $response->withRedirect('/admin');
+    }
+
     public function delete($request, $response, $args){
+        $id = $args['id'];
+
+        //TODO find the product to delete
+
+        //TODO remove the product
+
+        //return to admin page
         return $response->withRedirect('/admin');
     }
 
