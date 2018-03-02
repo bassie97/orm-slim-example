@@ -1,50 +1,9 @@
 <?php
-use App\Resource\CustomerResource;
-use Slim\Http\Request;
-use Slim\Http\Response;
 
-// Routes
-$customerResource = new CustomerResource();
-//$app->get('/customer/:id', function (Request $request, Response $response, array $args) use ($customerResource) {
-//    // Sample log message
-//    $this->logger->info($customerResource->get(1));
-//
-//    // Render index view
-//    echo $customerResource->get(1);
-//});});
+$app->get('/', App\Controllers\HomeController::class . ':index');
 
+$app->get('/shop', App\Controllers\ProductController::class . ':index');
 
+$app->get('/product/{id}', App\Controllers\ProductController::class . ':show');
 
-//$app->get('/customer/:id', function($id = null) use ($customerResource) {
-//    $this->logger->info($customerResource->get($id));
-//    echo $customerResource->get($id);
-//});
-
-//$app->get('/customer/{id}', function($id) use ($customerResource) {
-//    $param = $this->app->request->get();
-//    echo "The first parameter is " . $param;
-//});
-
-//$app->get('/', function ($request, $response) {
-//    return $this->view->render($response, 'home.twig');
-//});
-
-//$app->get('/customer/{id}', function ($request, $response, $args) use ($customerResource) {
-//    echo $customerResource->get($args['id']);
-//});
-//
-//$app->get('/customer/', function ($request, $response, $args) use ($customerResource) {
-//    echo $customerResource->get(null);
-//
-
-$app->get('/', App\Controllers\HomeController::class . ':home');
-
-$app->post('/shop', App\Controllers\HomeController::class . ':login');
-
-$app->get('/home', App\Controllers\HomeController::class . ':logout');
-
-$app->get('/logout', App\Controllers\HomeController::class . ':logout');
-
-//$app->get('/customer', App\Controllers\CustomerController::class . ':index');
-//
-//$app->get('/customer/{id}', App\Controllers\CustomerController::class . ':show');
+$app->get('/admin', App\Controllers\AdminController::class . ':index');

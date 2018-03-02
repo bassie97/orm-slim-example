@@ -37,6 +37,14 @@ $container[App\Controllers\HomeController::class] = function ($container) {
     return new App\Controllers\HomeController($container->get('view'), $container->get('logger'));
 };
 
+$container[App\Controllers\ProductController::class] = function ($container) {
+    return new App\Controllers\ProductController($container->get('view'), $container->get('logger'));
+};
+
+$container[App\Controllers\AdminController::class] = function ($container) {
+    return new App\Controllers\ProductController($container->get('view'), $container->get('logger'));
+};
+
 // Set up dependencies
 require __DIR__ . '/../src/app/dependencies.php';
 

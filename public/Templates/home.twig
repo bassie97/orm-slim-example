@@ -1,8 +1,26 @@
 {% extends "index.twig" %}
 {% block body %}
-    {{ test }}
-    <form action='../shop' method='POST'>
-        <input name='fullname' id='fullname' type='text' placeholder='Fullname'>
-        <button type='submit'>Login</button>
-    </form>
+    {{ results }}
+    <br>
+    <div class="table-head" style="text-align: center">
+        <h3>Nieuwste producten</h3>
+    </div>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Naam</th>
+            <th scope="col">Omschrijving</th>
+            <th scope="col">prijs</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr onclick="document.location = '/product/{{ product.id }}';">
+                <td>{{ product.name|e }}</td>
+                <td>{{ product.description|e }}</td>
+                <td>{{ product.price|e }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

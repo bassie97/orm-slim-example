@@ -28,6 +28,36 @@ class Product
      */
     protected $name;
 
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @var string
+     */
+    protected $description;
+
+    /**
+     * @ORM\Column(type="decimal")
+     *
+     * @var string
+     */
+    protected $price;
+
+    /**
+     * @return string
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param string $price
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+    }
+
     public function getId()
     {
         return $this->id;
@@ -41,5 +71,21 @@ class Product
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
     }
 }
