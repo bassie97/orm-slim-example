@@ -1,0 +1,13 @@
+{% extends "index.twig" %}
+{% block body %}
+        <!-- Table -->
+        <table class="table">
+            <thead>
+            <th colspan="2" style="text-align: center;">{{ product.name }}</th>
+            </thead>
+            <tbody>
+                <tr><th>Beschrijving</th><td>{{ product.description }}</td></tr>
+                <tr><th>Prijs</th><td>{{ product.price }} EU.<td></td></tr>
+            </tbody>
+        </table>
+{% endblock %}

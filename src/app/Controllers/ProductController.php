@@ -29,4 +29,17 @@ class ProductController extends AbstractResource
         return $response;
     }
 
+    public function show($request, $response, $args){
+        $id = urlencode($args['id']);
+        $product = $this->getEntityManager()->getRepository('App\Entities\Product')->find($id);
+
+        if($product != null) {
+            $result = array('product' => $product);
+        } else {
+            $result = array('size' => 0);
+        }
+        $response = $this->view->render($response, 'show.twig', $result);
+        return $response;
+    }
+
 }

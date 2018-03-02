@@ -9,7 +9,6 @@
 namespace App\Controllers;
 use App\AbstractResource;
 use Slim\Views\Twig;
-use App\Entities\product;
 
 class HomeController extends AbstractResource
 {
@@ -20,34 +19,13 @@ class HomeController extends AbstractResource
     }
 
     public function index($request, $response, $args){
+        //get the entitymanager
+        //get the needed entity
+        //findBy specific terms
         $products = $this->getEntityManager()->getRepository('App\Entities\Product')->findBy(array(), array('id' => 'DESC'),3);
         $response = $this->view->render($response, 'home.twig', array(
             "products" => $products
         ));
         return $response;
-    }
-
-    public function login($request, $response, $args) {
-        $args['name'] = $_POST['fullname'];
-        if ($args['name'] == 'admin')
-            $response = $this->view->render($response, 'admin.twig', $args);
-        else
-            $response = $this->view->render($response, 'shop.twig', $args);
-
-        return $response;
-    }
-
-    public function logout($request, $response, $args) {
-        $_POST = null;
-        $response = $this->view->render($response, 'home.twig', $args);
-
-        return $response;
-    }
-
-    private function convertToArray(Product $product) {
-        return array(
-            'id' => $product->getId(),
-            'name' => $product->getName()
-        );
     }
 }
