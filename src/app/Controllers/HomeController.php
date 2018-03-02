@@ -18,6 +18,13 @@ class HomeController extends AbstractResource
         $this->view = $view;
     }
 
+    /**
+     * @param $request
+     * @param $response
+     * @param $args
+     * @return \Psr\Http\Message\ResponseInterface
+     * find the newest three products
+     */
     public function index($request, $response, $args){
         //get the entitymanager
         //get the needed entity

@@ -18,8 +18,16 @@ class ProductController extends AbstractResource
         $this->view = $view;
     }
 
+    /**
+     * @param $request
+     * @param $response
+     * @param $args
+     * @return \Psr\Http\Message\ResponseInterface
+     * show all products
+     */
     public function index($request, $response, $args){
         $products = $this->getEntityManager()->getRepository('App\Entities\Product')->findAll();
+
         if($products != null) {
             $args['result'] = $products;
         } else {
@@ -29,8 +37,31 @@ class ProductController extends AbstractResource
         return $response;
     }
 
+    /**
+     * @param $request
+     * @param $response
+     * @param $args
+     * @return \Psr\Http\Message\ResponseInterface
+     * show all products
+     */
+    public function adminIndex($request, $response, $args){
+        $products = $this->getEntityManager()->getRepository('App\Entities\Product')->findAll();
+        $response = $this->view->render($response, 'adminIndex.twig', array(
+            "products" => $products
+        ));
+        return $response;
+    }
+
+    /**
+     * @param $request
+     * @param $response
+     * @param $args
+     * @return \Psr\Http\Message\ResponseInterface
+     * find product by id
+     */
     public function show($request, $response, $args){
         $id = urlencode($args['id']);
+        //find($id) searched for a product with id = $id
         $product = $this->getEntityManager()->getRepository('App\Entities\Product')->find($id);
 
         if($product != null) {

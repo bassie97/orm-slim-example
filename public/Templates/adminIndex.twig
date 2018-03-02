@@ -1,0 +1,30 @@
+{% extends "index.twig" %}
+{% block body %}
+    <br>
+    <div class="table-head" style="text-align: center">
+        <h3>Alle producten</h3>
+    </div>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Naam</th>
+            <th scope="col">Omschrijving</th>
+            <th scope="col">prijs</th>
+            <th scope="col">Acties</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if products|length == 0 %}
+            <tr><td colspan="4" style="text-align: center;">Empty Shop!</td></tr>
+        {% endif %}
+        {% for product in products %}
+            <tr>
+                <td>{{ product.name|e }}</td>
+                <td>{{ product.description|e }}</td>
+                <td>{{ product.price|e }}</td>
+                <td><a href="/product/edit/{{ product.id }}" class="btn btn-info">Edit</a> <a href="/product/delete/{{ product.id }}" class="btn btn-danger">Delete</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
