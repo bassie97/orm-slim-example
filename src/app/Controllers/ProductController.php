@@ -8,6 +8,7 @@
 
 namespace App\Controllers;
 use App\AbstractResource;
+use App\Entities\Product;
 use Slim\Views\Twig;
 
 class ProductController extends AbstractResource
@@ -75,18 +76,28 @@ class ProductController extends AbstractResource
 
     public function create($request, $response, $args){
 
-        var_dump($request->getParsedBody());
+        $allPostPutVars = $request->getParsedBody();
+
+        $product = new Product();
+        $product->setName($allPostPutVars['name']);
+        $product->setPrice($allPostPutVars['price']);
+        $product->setDescription($allPostPutVars['description']);
+
+        $this->getEntityManager()->persist($product);
+        $this->getEntityManager()->flush();
 
 
-//        return $response->withRedirect('/admin');
+        return $response->withRedirect('/admin');
     }
 
     public function update($request, $response, $args){
 
+
+
     }
 
     public function delete($request, $response, $args){
-
+        return $response->withRedirect('/admin');
     }
 
 }
